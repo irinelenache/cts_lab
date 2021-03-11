@@ -13,6 +13,8 @@ public class Main {
 		
 		System.out.println("Creditul maxim pt un cont curent este " + CurrentAccount.MAX_CREDIT);
 		
+		
+		SavingsAccount account3 = new SavingsAccount(300, "IBAN3");
 		c.deposit(200);
 		System.out.println("suma disponibila este: " + c.getBalance());
 		
@@ -27,6 +29,13 @@ public class Main {
 		
 		System.out.println("suma in contul 2 este " + account2.getBalance());
 
+		System.out.println("Suma in contul 3 este " + account3.getBalance());
+		account3.addInterest(30);
+		System.out.println("Suma in contul 3 este " + account3.getBalance());
+		
+		Bank banca = new Bank();
+		
+		BankAccount account4 = banca.openBankAccount(1);
 		
 	}
 

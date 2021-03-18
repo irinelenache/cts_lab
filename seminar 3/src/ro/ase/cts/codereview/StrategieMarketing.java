@@ -17,26 +17,10 @@ public class StrategieMarketing {
 		return (pretInitial-(discountExtra * pretInitial)) - valoareDiscount * (pretInitial-(discountExtra*pretInitial));
 	}
 	public float calculeazaPretFinal(TipProdus tipProdus, float pretInitial, int vechime) {
-		float pretFinal = 0;
 		float discount = getDiscount(vechime);
 		
-		switch(tipProdus) {
-		case NOU:
-			pretFinal = pretInitial;
-			break;
-		case DISCOUNT:
-			pretFinal = aplicaDiscount(pretInitial, discount, DISCOUNT_EXTRA_10);
-			break;
-		case STOC_LIMITAT:
-			pretFinal = aplicaDiscount(pretInitial, discount, DISCOUNT_EXTRA_25);
-			break;
-		case SFARSIT_DE_SEZON:
-			pretFinal = aplicaDiscount(pretInitial, discount, DISCOUNT_EXTRA_35);
-			break;
-		default:
-			throw new UnsupportedOperationException("Categorie produs neidentificata");
-		}
 		
-		return pretFinal;
+		return (tipProdus != TipProdus.NOU) ? aplicaDiscount(pretInitial, discount, tipProdus.getDiscount()) : pretInitial;
+		
 	}
 }

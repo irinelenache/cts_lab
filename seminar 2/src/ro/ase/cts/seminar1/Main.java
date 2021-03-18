@@ -2,12 +2,14 @@ package ro.ase.cts.seminar1;
 
 import ro.ase.cts.seminar1.exceptii.IllegalTransferException;
 import ro.ase.cts.seminar1.exceptii.InsufficientFundsException;
+import ro.ase.cts.seminar1.interfaces.NotificationService;
 
 public class Main {
 
 	public static void main(String[] args) {
 
 		CurrentAccount c = new CurrentAccount(300, "IBAN1");
+		c.setNotificationService(new SMSNotificationService());
 		CurrentAccount account2 = new CurrentAccount(200, "IBAN2");
 		System.out.println("suma disponibila este: " + c.getBalance());
 		
@@ -21,6 +23,15 @@ public class Main {
 		try {
 			c.withdraw(200);
 			c.transfer(100, account2);
+			c.setNotificationService(new EmailNotificationService());
+			c.withdraw(200);
+			
+			c.setNotificationService(new NotificationService() {
+				@Override
+				public void sendNotification(String message) {
+					System.out.println("sent push notification with message " + message);
+				}
+			});
 		} catch (InsufficientFundsException | IllegalTransferException e) {
 			// TODO Auto-generated catch block
 			System.err.println(e.getMessage());
@@ -30,12 +41,15 @@ public class Main {
 		System.out.println("suma in contul 2 este " + account2.getBalance());
 
 		System.out.println("Suma in contul 3 este " + account3.getBalance());
-		account3.addInterest(30);
+		((SavingsAccount) account3).addInterest(30);
 		System.out.println("Suma in contul 3 este " + account3.getBalance());
+		
+		account3.deposit(200);
+		
 		
 		Bank banca = new Bank();
 		
-		BankAccount account4 = banca.openBankAccount(1);
+		BankAccount account4 = banca.openBankAccount(AccountType.CURRENT);
 		
 	}
 

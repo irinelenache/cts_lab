@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import ro.ase.cts.seminar5.factory.Product;
+import ro.ase.cts.seminar6.builder.Product;
 
 public class Cart {
 

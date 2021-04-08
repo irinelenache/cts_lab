@@ -52,7 +52,9 @@ public class TechProductFactory extends AbstractProductFactory{
 			e1.printStackTrace();
 		}
 		URL fileUrl = getClass().getResource(fileName);
-		File productsFile = new File(fileUrl.getPath());
+		//File productsFile = new File(fileUrl.getPath());
+		File productsFile = new File("D:\\Programe\\cts_lab\\seminar 6\\bin\\ro\\ase\\cts\\seminar6\\builder\\tech_products.csv");
+
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(productsFile));
 			String line;
@@ -72,5 +74,4 @@ public class TechProductFactory extends AbstractProductFactory{
 		
 		return records;
 	}
-
 }

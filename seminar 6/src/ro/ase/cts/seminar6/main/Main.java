@@ -28,24 +28,6 @@ public class Main {
 		
 		System.out.println(productFactory.getCatalog());
 		userPreference = scan.nextLine();
-		try {
-			int selectedId = Integer.valueOf(userPreference);
-			myProduct = productFactory.makeProduct(selectedId);
-
-		} catch (NumberFormatException e) {
-			System.err.println("Selectie invalida");
-
-		}
-		System.out.println(productFactory.getCatalog());
-
-		
-		if (userPreference != null) {
-			if (userPreference.equalsIgnoreCase("tech")) {
-				productFactory = new TechProductFactory();
-			}
-		}
-
-		System.out.println(productFactory.getCatalog());
 
 		for (int i = 0; i < 2; i++) {
 			userPreference = scan.nextLine();
